@@ -7,32 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h2>Text to Speech Application</h2>
 
-    <label>
-        Enter Text:
-        <textarea id="textInput" placeholder="Type something to speak..."></textarea>
-    </label>
+    <!-- Text Area -->
+    <textarea id="textInput" placeholder="Type something to speak..."></textarea>
 
-    <label>
-        Select Voice:
-        <select id="voiceSelect"></select>
-    </label>
+    <!-- Voice Selection -->
+    <select id="voiceSelect"></select>
 
+    <!-- Rate Slider -->
     <label>
         Rate:
-        <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+        <input type="range" id="rate" name="rate" min="0.5" max="2" step="0.1" value="1">
     </label>
 
+    <!-- Pitch Slider -->
     <label>
         Pitch:
-        <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+        <input type="range" id="pitch" name="pitch" min="0" max="2" step="0.1" value="1">
     </label>
 
-    <div class="buttons">
-        <button id="speakBtn">Speak</button>
-        <button id="stopBtn">Stop</button>
-    </div>
+    <!-- Buttons -->
+    <button id="speak">Speak</button>
+    <button id="stop">Stop</button>
 
     <script src="script.js"></script>
 </body>

@@ -1,23 +1,20 @@
-// Your script here.
 const textInput = document.getElementById("textInput");
 const voiceSelect = document.getElementById("voiceSelect");
-const speakBtn = document.getElementById("speakBtn");
-const stopBtn = document.getElementById("stopBtn");
+const speakBtn = document.getElementById("speak");
+const stopBtn = document.getElementById("stop");
 const rateInput = document.getElementById("rate");
 const pitchInput = document.getElementById("pitch");
 
 let voices = [];
 let utterance;
 
-// Load available voices
+// Load voices
 function loadVoices() {
     voices = speechSynthesis.getVoices();
     voiceSelect.innerHTML = "";
 
-    if (voices.length === 0) {
-        const option = document.createElement("option");
-        option.textContent = "No voices available";
-        voiceSelect.appendChild(option);
+    if (!voices.length) {
+        voiceSelect.innerHTML = "<option>No voices available</option>";
         return;
     }
 
@@ -29,16 +26,12 @@ function loadVoices() {
     });
 }
 
-// Some browsers load voices asynchronously
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
-// Speak function
+// Speak
 function speakText() {
-    if (!textInput.value.trim()) {
-        alert("Please enter text to speak.");
-        return;
-    }
+    if (!textInput.value.trim()) return;
 
     speechSynthesis.cancel();
 
@@ -50,18 +43,15 @@ function speakText() {
     speechSynthesis.speak(utterance);
 }
 
-// Stop speech
+// Stop
 function stopSpeech() {
     speechSynthesis.cancel();
 }
 
-// Restart speech if voice changes mid-speech
+// Restart on voice change
 voiceSelect.addEventListener("change", () => {
-    if (speechSynthesis.speaking) {
-        speakText();
-    }
+    if (speechSynthesis.speaking) speakText();
 });
 
-// Button listeners
 speakBtn.addEventListener("click", speakText);
 stopBtn.addEventListener("click", stopSpeech);
